@@ -11,11 +11,13 @@ namespace ProductInheritancePorject {
             Product widget2 = new Widget("W2", 100, "Medium", "White");
             Product widget3 = new Widget("w3", 200, "Large", "Blue");
             Product service = new Service("SVC", 500, "Premium", 5);
+            Product software = new Software("SFTW", 150, true);
 
             salesOrder.Add(widget1);
             salesOrder.Add(widget2);
             salesOrder.Add(widget3);
             salesOrder.Add(service);
+            salesOrder.Add(software);
 
             decimal salesOrderTotal = 0;
             foreach(Product p in salesOrder) {
@@ -29,6 +31,11 @@ namespace ProductInheritancePorject {
                     Service s = p as Service;
                     Console.WriteLine($"{s.Code} {s.Price:c} {s.ServiceLevel} {s.NumberOfYears} ");
                     continue;
+                }
+                if (p is Software) {
+                    Software so = p as Software;
+                    Console.WriteLine($"{so.Code} {so.Price} {(so.Book ? "With Book" : "Without Book")}");
+                    continue; 
                 }
             }
             Console.WriteLine($"Total sales order is {salesOrderTotal:c}");
